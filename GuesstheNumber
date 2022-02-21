@@ -1,0 +1,46 @@
+#Number Guessing Game coded by ThaMayo
+
+from replit import clear
+from art import logo
+import random
+
+print(logo)
+
+print("\nWelcome to the Number Guessing Game!\n")
+print("I'm thinking of a number between 1 and 100.\n")
+
+def randomNumber():
+    """Chooses a random number to start the game."""
+    ranNumber = random.choice(range(1, 101))
+    return ranNumber
+
+#Choosing the game difficulty
+attempts = 0
+gameDifficulty = input("Choose a difficulty: Type 'easy' or 'hard': ")
+if gameDifficulty == "easy":
+    attempts = 10
+else:
+    attempts = 5
+
+#Starting the guessing game
+isGameOver = False
+number = randomNumber()
+while attempts != 0 and isGameOver == False:
+    print(f"\nYou have {attempts} attempts remaining to guess the number.")
+    guess = int(input("\nMake a guess: "))
+    
+    if guess == number:
+        print(f"\nYou got it! The answer was {number}.")
+        isGameOver = True
+    elif guess < number:
+        attempts -= 1
+        if attempts == 0:
+            print(f"You've run out of guesses! Game Over. The answer was {number}.")
+        else:
+            print("\nYour guess is too low. Guess again.")
+    elif guess > number:
+        attempts -= 1
+        if attempts == 0:
+            print(f"\nYou've run out of guesses! Game Over. The answer was {number}.")
+        else:
+            print("\nYour guess is too high. Guess again.")
